@@ -79,3 +79,9 @@ gunzip /tmp/gitlab-ce-latest.tar.gz
 docker load -i /tmp/gitlab-ce-latest.tar
 ```
 
+
+## REFERENCES
+
+https://www.howtoforge.com/tutorial/how-to-install-gitlab-server-with-docker-on-ubuntu-1804/
+
+ 
