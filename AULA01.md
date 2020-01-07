@@ -1,6 +1,6 @@
 ## KVM
 
-* Verificar
+Verificar
 
 ```
 egrep -c '(vmx|svm)' /proc/cpuinfo
@@ -8,14 +8,14 @@ sudo apt install cpu-checker
 sudo kvm-ok
 ``` 
 
-* Instalar
+Instalar
 
 ```
 sudo apt update
 sudo apt install qemu qemu-kvm libvirt-bin  bridge-utils  virt-manager
 ``` 
 
-* Start & enable libvirtd service
+Start & enable libvirtd service
 
 ```
 sudo service libvirtd start
@@ -61,4 +61,21 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
+## GITLAB
+
+Baixando a imagem
+
+```
+docker pull gitlab/gitlab-ce
+```
+
+Salvando a imagem
+
+```
+docker save gitlab/gitlab-ce:latest > /tmp/gitlab-ce-latest.tar
+gzip /tmp/gitlab-ce-latest.tar
+
+gunzip /tmp/gitlab-ce-latest.tar.gz
+docker load -i /tmp/gitlab-ce-latest.tar
+```
 
