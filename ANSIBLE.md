@@ -1,4 +1,4 @@
-## INSTALl
+## INSTALL
 
 ```
 sudo apt update
