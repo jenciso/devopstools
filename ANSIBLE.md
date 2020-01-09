@@ -1,4 +1,4 @@
-## INSTALl
+## INSTALL
 
 ```
 sudo apt update
@@ -48,4 +48,61 @@ Execute adhoc command
 	ansible -m command -u centos -a "cat /etc/redhat-release" gitlab
 
 https://www.unixarena.com/2018/07/ansible-command-vs-shell-vs-raw-modules.html/	
+
+## Ansible Windows 2008 R2
+
+* Acessar pelo Remote Desktop
+
+
+* Instalar o PowerShell via o Server Manager -> Add Features
+
+* Permitir execução remota
+
+	Set-ExecutionPolicy RemoteSigned
+
+* Upgrade PowerShell. Baixar o script
+
+	https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1
+	
+* Executar 
+
+	./Upgrade-PowerShell.ps1
+
+* Instalar Microsoft Net Framework 4.5 and Management Framework 3.0
+
+	https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
+	https://www.microsoft.com/en-us/download/details.aspx?id=34595
+
+	$PSVersionTable.PSVersion
+
+* Baixar o script para habilitar o Ansible
+
+
+	https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
+	./Ansible.ps1
+
+
+* Executar no ansible host
+
+	sudo apt-get install -y libkrb5-dev
+	sudo apt-get install -y python-pip
+	sudo pip install pywinrm[Kerberos]
+	sudo pip install --upgrade pip
+
+* No ansible host
+
+	mkdir -p ~/ansible/group_vars/windows
+	vim main.yml
+
+* Copiar o seguinte conteúdo
+
+```
+---
+ansible_user: Administrator
+ansible_password: SuperSecret2012
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_become: false
+```
 
