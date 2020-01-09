@@ -53,7 +53,6 @@ https://www.unixarena.com/2018/07/ansible-command-vs-shell-vs-raw-modules.html/
 
 * Acessar pelo Remote Desktop
 
-
 * Instalar o PowerShell via o Server Manager -> Add Features
 
 * Permitir execução remota
@@ -73,10 +72,11 @@ https://www.unixarena.com/2018/07/ansible-command-vs-shell-vs-raw-modules.html/
 	https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
 	https://www.microsoft.com/en-us/download/details.aspx?id=34595
 
+* Verificar que seja a versão 3 do powershell
+
 	$PSVersionTable.PSVersion
 
 * Baixar o script para habilitar o Ansible
-
 
 	https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
 	./Ansible.ps1
@@ -105,4 +105,8 @@ ansible_connection: winrm
 ansible_winrm_server_cert_validation: ignore
 ansible_become: false
 ```
+
+* Testar
+
+	ansible -m win_ping windows
 

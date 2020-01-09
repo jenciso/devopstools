@@ -1,26 +1,42 @@
+## SUDOERS
+
+```
+sudo su -
+echo "target ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/target
+```
+
 ## SSH configuração
 
 * Criar umas chaves SSH 
 
-	ssh-keygen
+```
+ssh-keygen
+```
 
 * Instalar SSH server
 
-	sudo apt-get -y install openssh-server
+```
+sudo apt-get -y install openssh-server
+``` 
 
 * Averiguar tua IP Address
 
-	ip addr | grep "inet " | egrep -v "(docker0|virbr0)" | grep 'scope global'
+```
+ip addr | grep "inet " | egrep -v "(docker0|virbr0)" | grep 'scope global'
+```
 
 * Copiando chaves
 
-	ssh-copy-id target@10.54.12.116
+```
+ssh-copy-id target@10.0.1.149
+```
 
 * Testando a execução de comando remoto
 
-	ssh 10.54.12.116 "date"
-
-
+```
+ssh target@10.0.1.149 "date"
+ssh target@10.0.1.149 "cat myarchive.txt"
+```
 
 ## KVM CUSTOM PROVISION
 
@@ -29,12 +45,15 @@
 
 * Criar um password novo. Ex `target`
 
-	openssl passwd -1 -salt SaltSalt target
+```
+openssl passwd -1 -salt SaltSalt target
+```
 
 * Copiar tua chave publica q fica aqui 
 
-	cat ~/.ssh/id_rsa.pub 
-
+``` 
+cat ~/.ssh/id_rsa.pub 
+```
 * Editar as variaveis com os valores obtidos e colocar tamanho de 20G para o disco 
 
 	PASSWORD
@@ -43,12 +62,15 @@
 
 * criar um servidor
 
-	./new-vm.sh -n demo01 -m 1024 -c 2 -i 192.168.122.12
-
+```
+./new-vm.sh -n demo01 -m 1024 -c 2 -i 192.168.122.12
+```
 
 * Verificando, entrando na console
 
-	virsh console demo01
+```
+virsh console demo01
+``` 
 
 ```
 ✔ 14:31:07 [lat3480i7] kvm-provision [master ✚1] $ virsh console demo01
@@ -78,22 +100,26 @@ Para sair `CTRL + ]`
 
 * Testar o acesso ssh 
 
-        ssh centos@192.168.122.12
+```
+ssh centos@192.168.122.12
+```
 
-* Executar alguns comandos
+* Executar alguns comandos na VM
 
-	cat /etc/hostname
-	ip addr
-	netstat -arn
-	sudo su -
-	cat /etc/sudoers.d/90-cloud-init-users
-	cat /etc/redhat-release
-	reboot
+```
+cat /etc/hostname
+ip addr
+netstat -arn
+sudo su -
+cat /etc/sudoers.d/90-cloud-init-users
+cat /etc/redhat-release
+reboot
+```
 
+* Verificar as maquinas virtuais criadas, executar na Hospedeira
 
-* Verificar as maquinas virtuais criadas
-
-	virt-manager
-	virsh list --all
-
+```
+virt-manager
+virsh list --all
+```
 
