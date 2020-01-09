@@ -30,13 +30,32 @@ Verificando o que está fazendo
 
 	tail -f /var/log/gitlab/gitlab-rails/production.log
 
-Configurando acesso https
+Acessar
 
-	wget 
-	ssh gitlab.enciso.website
+http://gitlab.enciso.website
+
+Colocar como password: `SuperSecret2012`
+
+Ingressar como usuario `root` e password já mencionado
+
+
+
+### Melhorando a configuração
+
+	ssh centos@gitlab.enciso.website
+
 	cd /etc/gitlab
-	vim gitlab.rb
+	
+	mkdir ssl
+	curl -sL https://raw.githubusercontent.com/jenciso/devopstools/master/data/certificate-bundle.crt -o ssl/gitlab.enciso.website.crt
+	curl -sL https://raw.githubusercontent.com/jenciso/devopstools/master/data/private.key -o ssl/gitlab.enciso.website.key
 
+	curl -sL https://raw.githubusercontent.com/jenciso/devopstools/master/data/gitlab.rb.template -o gitlab.rb
+
+	gitlab-ctl reconfigure
+
+
+Testar as configurações feitas fazendo um logout e logo um login  http://gitlab.enciso.website
 
 
 ## GITLAB CONTAINER
@@ -63,5 +82,4 @@ docker load -i /tmp/gitlab-ce-latest.tar
 
 https://about.gitlab.com/install/#centos-7?version=ce
 https://docs.gitlab.com/omnibus/settings/nginx.html#manually-configuring-https
-
 
