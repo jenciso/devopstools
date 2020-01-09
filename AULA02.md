@@ -91,3 +91,9 @@ Para sair `CTRL + ]`
 	reboot
 
 
+* Verificar as maquinas virtuais criadas
+
+	virt-manager
+	virsh list --all
+
+
