@@ -2,6 +2,7 @@
 
 Instalar servidor
 
+	cd kvm-provision
 	./new-vm.sh -n gitlab -m 4096 -c 2 -i 192.168.122.41
 
 Install and configure the necessary dependencies
