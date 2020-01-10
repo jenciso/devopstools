@@ -36,16 +36,20 @@ gitlab.enciso.website
 
 Get version
 
-	ansible --version
+```
+ansible --version
+```
 
 Execute adhoc command
 
-	ansible -m ping -u centos all
-	ansible -m ping -u centos gitlab
+```
+ansible -m ping -u centos all
+ansible -m ping -u centos gitlab
 
-	ansible -m raw -u centos -a "cat /etc/redhat-release" gitlab
-	ansible -m shell -u centos -a "cat /etc/redhat-release" gitlab
-	ansible -m command -u centos -a "cat /etc/redhat-release" gitlab
+ansible -m raw -u centos -a "cat /etc/redhat-release" gitlab
+ansible -m shell -u centos -a "cat /etc/redhat-release" gitlab
+ansible -m command -u centos -a "cat /etc/redhat-release" gitlab
+```
 
 https://www.unixarena.com/2018/07/ansible-command-vs-shell-vs-raw-modules.html/	
 
@@ -57,42 +61,52 @@ https://www.unixarena.com/2018/07/ansible-command-vs-shell-vs-raw-modules.html/
 
 * Permitir execução remota
 
-	Set-ExecutionPolicy RemoteSigned
+```
+Set-ExecutionPolicy RemoteSigned
+```
 
-* Upgrade PowerShell. Baixar o script
-
-	https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1
+* Upgrade PowerShell. Baixar o script https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1
 	
 * Executar 
 
-	./Upgrade-PowerShell.ps1
+```	
+./Upgrade-PowerShell.ps1
+```
 
 * Instalar Microsoft Net Framework 4.5 and Management Framework 3.0
 
-	https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
-	https://www.microsoft.com/en-us/download/details.aspx?id=34595
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
+
+https://www.microsoft.com/en-us/download/details.aspx?id=34595
 
 * Verificar que seja a versão 3 do powershell
 
-	$PSVersionTable.PSVersion
+```
+$PSVersionTable.PSVersion
+```
 
 * Baixar o script para habilitar o Ansible
 
-	https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
-	./Ansible.ps1
-
+```
+https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
+./Ansible.ps1
+```
 
 * Executar no ansible host
 
-	sudo apt-get install -y libkrb5-dev
-	sudo apt-get install -y python-pip
-	sudo pip install pywinrm[Kerberos]
-	sudo pip install --upgrade pip
+```
+sudo apt-get install -y libkrb5-dev
+sudo apt-get install -y python-pip
+sudo pip install pywinrm[Kerberos]
+sudo pip install --upgrade pip
+```
 
 * No ansible host
 
-	mkdir -p ~/ansible/group_vars/windows
-	vim main.yml
+```
+mkdir -p ~/ansible/group_vars/windows
+vim main.yml
+```
 
 * Copiar o seguinte conteúdo
 
@@ -108,5 +122,6 @@ ansible_become: false
 
 * Testar
 
-	ansible -m win_ping windows
-
+```
+ansible -m win_ping windows
+```
