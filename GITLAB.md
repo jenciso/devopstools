@@ -5,7 +5,11 @@ Instalar servidor
 	cd kvm-provision
 	./new-vm.sh -n gitlab -m 4096 -c 2 -i 192.168.122.41
 
-Install and configure the necessary dependencies
+Acessar ao servidor novo
+
+	ssh centos@192.168.122.41
+
+Instalar os pacotes necessarios
 
 ```
 sudo yum install -y curl policycoreutils-python openssh-server openssh-clients firewalld
