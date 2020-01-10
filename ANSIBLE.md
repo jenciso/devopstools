@@ -124,4 +124,6 @@ ansible_become: false
 
 ```
 ansible -m win_ping windows
+
+ansible -m win_command -a "whoami" windows
 ```
