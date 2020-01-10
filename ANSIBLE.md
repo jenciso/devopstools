@@ -137,3 +137,15 @@ ansible -m win_ping windows
 
 ansible -m win_command -a "whoami" windows
 ```
+
+## Notas
+
+Limitar o acesso para algumas IP's
+
+```
+no-port-forwarding,from="10.64.4.13,10.64.4.65,10.64.4.66,10.64.4.67" ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAA
+BAQC7JqHkL0tE3x7PG4kfyRllyDYKu6/Hr2mX0jtXPa90ibF31EBWIW0ojnyIS5N6NAIcSx/SV3k51bbv4CN75ok7TENZQxgkzZEJw1Da
++3tofx3drSqIzcwEFE/wr37miIVqIEaYuWkcNkiuE7YVACx9NKYbjU3BiPTOVmiZ4sIk3/0t0kYErota4Jkhf09gXjg9zo+zpSvdrax+G
+a6pGp8fDP9pXYELNEiqzyxAAYWG4SL root@myserver
+```
+
