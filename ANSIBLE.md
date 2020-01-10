@@ -1,4 +1,4 @@
-## INSTALL
+## INSTALL Ansible
 
 ```
 sudo apt update
@@ -7,7 +7,7 @@ sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible
 ```
 
-## Configure your home env
+## Configure your ansible config file
 
 Create a file named `~/.ansible.cfg`
 
@@ -25,16 +25,19 @@ become_user=root
 
 ### Test
 
-Create a host file `~/ansible/hosts`
+Create a host inventory file `~/ansible/hosts`
 
 ``` 
 [gitlab]
 gitlab.enciso.website
+
+[windows]
+win-ad.enciso.website
 ```
 
 ## Verify setup 
 
-Get version
+Get ansible version
 
 ```
 ansible --version
@@ -73,11 +76,17 @@ Set-ExecutionPolicy RemoteSigned
 ./Upgrade-PowerShell.ps1
 ```
 
-* Instalar Microsoft Net Framework 4.5 and Management Framework 3.0
+* Instalar Microsoft Net Framework 4.5
 
+dotNetFx45_Full_setup.exe
 https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
 
+
+* Instalar o pacote Management Framework 3.0
+
+Windows6.0-KB2506146-x64.msu
 https://www.microsoft.com/en-us/download/details.aspx?id=34595
+
 
 * Verificar que seja a versão 3 do powershell
 
@@ -89,6 +98,7 @@ $PSVersionTable.PSVersion
 
 ```
 https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
+
 ./Ansible.ps1
 ```
 
