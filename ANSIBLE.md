@@ -88,6 +88,11 @@ Windows6.0-KB2506146-x64.msu
 https://www.microsoft.com/en-us/download/details.aspx?id=34595
 
 
+* Instalar o hotfix
+
+https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html#host-requirements
+
+
 * Verificar que seja a versão 3 do powershell
 
 ```
@@ -136,6 +141,7 @@ ansible_become: false
 ansible -m win_ping windows
 
 ansible -m win_command -a "whoami" windows
+ansible -m win_shell -a 'Restart-Computer -Force' windows
 ```
 
 ## Notas
