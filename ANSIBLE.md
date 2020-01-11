@@ -139,6 +139,9 @@ ansible -m win_ping windows
 
 ansible -m win_command -a "whoami" windows
 ansible -m win_shell -a 'Restart-Computer -Force' windows
+ansible -m win_shell -a 'dsquery group -name OPS' windows 
+ansible -m win_shell -a 'dsquery user -name Juan*' windows
+ansible -m win_shell -a "Get-Hotfix" windows
 ```
 
 ## Notas
