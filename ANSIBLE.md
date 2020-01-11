@@ -78,20 +78,17 @@ Set-ExecutionPolicy RemoteSigned
 
 * Instalar Microsoft Net Framework 4.5
 
-dotNetFx45_Full_setup.exe
-https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653
+  [dotNetFx45_Full_setup.exe](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30653)
 
 
 * Instalar o pacote Management Framework 3.0
 
-Windows6.0-KB2506146-x64.msu
-https://www.microsoft.com/en-us/download/details.aspx?id=34595
+  [Windows6.0-KB2506146-x64.msu](https://www.microsoft.com/en-us/download/details.aspx?id=34595)
 
 
-* Instalar o hotfix
+* Instalar o hotfix (WinRM Memory)
 
-https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html#host-requirements
-
+  https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html#winrm-memory-hotfix
 
 * Verificar que seja a versão 3 do powershell
 
