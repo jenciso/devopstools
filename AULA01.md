@@ -23,6 +23,40 @@ sudo update-rc.d libvirtd enable
 service libvirtd status
 ```
 
+Configurar bridge
+
+```
+sudo su - 
+vim /etc/netplan/50-cloud-init.yaml
+```
+
+Example de conteúdo 
+```
+network:
+  version: 2
+  ethernets:
+    enp2s0:
+      dhcp4: yes
+      dhcp6: no
+
+  bridges:
+    br0:
+      interfaces: [enp2s0]
+      dhcp4: yes
+      dhcp6: no
+```
+
+Reconfigurar
+```
+sudo netplan apply
+sudo networkctl status -a
+```
+> A minha NIC é enp2s0, em outros casos pode ser eth0
+
+References:
+
+https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/
+
 ## DOCKER
 
 Instalar
@@ -61,27 +95,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
-## GITLAB
-
-Baixando a imagem
-
-```
-docker pull gitlab/gitlab-ce
-```
-
-Salvando a imagem
-
-```
-docker save gitlab/gitlab-ce:latest > /tmp/gitlab-ce-latest.tar
-gzip /tmp/gitlab-ce-latest.tar
-
-gunzip /tmp/gitlab-ce-latest.tar.gz
-docker load -i /tmp/gitlab-ce-latest.tar
-```
-
-
 ## REFERENCES
 
-https://www.howtoforge.com/tutorial/how-to-install-gitlab-server-with-docker-on-ubuntu-1804/
 
  

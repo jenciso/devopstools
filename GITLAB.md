@@ -87,4 +87,4 @@ docker load -i /tmp/gitlab-ce-latest.tar
 
 https://about.gitlab.com/install/#centos-7?version=ce
 https://docs.gitlab.com/omnibus/settings/nginx.html#manually-configuring-https
-
+https://www.howtoforge.com/tutorial/how-to-install-gitlab-server-with-docker-on-ubuntu-1804/

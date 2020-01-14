@@ -9,6 +9,10 @@ sudo apt install ansible
 
 ## Configure your ansible config file
 
+```
+mkdir ~/ansible
+```
+
 Create a file named `~/.ansible.cfg`
 
 ```
