@@ -50,6 +50,7 @@ Reconfigurar
 ```
 sudo netplan apply
 sudo networkctl status -a
+sudo reboot
 ```
 > A minha NIC é enp2s0, em outros casos pode ser eth0
 
