@@ -257,3 +257,80 @@ stop_review:
   except:
     - master
 ```
+
+## Runner in kubernetes
+
+```yaml
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_IMAGE_TAG: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+
+build:
+  stage: build
+  image: docker:git
+  services:
+    - docker:18.09.8-dind
+  variables:
+    DOCKER_HOST: tcp://localhost:2375/
+  before_script:
+    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" ${CI_REGISTRY}
+    - docker info
+  script:
+    - docker build . -t ${DOCKER_IMAGE_TAG}
+    - docker push ${DOCKER_IMAGE_TAG}
+
+deploy-prd:
+  stage: deploy
+  variables:
+    APP_NAME: prd-${CI_PROJECT_NAME}
+    APP_LABEL: prd
+    DEPLOY_HOST: ${CI_PROJECT_NAME}.paas.beemovil.com
+  environment:
+    name: prd
+    url: http://${DEPLOY_HOST}/
+  image: jenciso/kubectl
+  script:
+    - kubectl delete --ignore-not-found=true secret gitlab-auth
+    - kubectl create secret docker-registry gitlab-auth --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD}
+    - cat k8s.yml | envsubst | kubectl apply -f -
+  only:
+    - master
+
+review:
+  stage: deploy
+  environment:
+    name: review/${CI_COMMIT_REF_SLUG}
+    url: http://${CI_COMMIT_REF_SLUG}-${DEPLOY_HOST}/
+    on_stop: stop_review
+  variables:
+    APP_NAME: ${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}
+    APP_LABEL: ${CI_ENVIRONMENT_SLUG}
+    DEPLOY_HOST: ${CI_COMMIT_REF_SLUG}-${DEPLOY_HOST}
+  image: jenciso/kubectl
+  script:
+    - kubectl delete --ignore-not-found=true secret gitlab-auth
+    - kubectl create secret docker-registry gitlab-auth --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD}
+    - cat k8s.yml | envsubst | kubectl apply -f -
+  except:
+    - master
+
+stop_review:
+  stage: deploy
+  environment:
+    name: review/${CI_COMMIT_REF_SLUG}
+    action: stop
+  variables:
+    APP_NAME: ${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}
+    GIT_STRATEGY: none
+  image: jenciso/kubectl
+  script:
+    - kubectl delete service/${APP_NAME}
+    - kubectl delete deploy/${APP_NAME}
+    - kubectl delete ingress/${APP_NAME}-ingress
+  when: manual
+  except:
+    - master
+```
