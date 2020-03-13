@@ -1,10 +1,3 @@
-## SUDOERS
-
-```
-sudo su -
-echo "target ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/target
-```
-
 ## SSH configuração
 
 * Criar umas chaves SSH 
@@ -54,24 +47,27 @@ openssl passwd -1 -salt SaltSalt target
 ``` 
 cat ~/.ssh/id_rsa.pub 
 ```
-* Editar as variaveis com os valores obtidos e colocar tamanho de 20G para o disco 
+* Editar as seguintes variaveis com os valores obtidos do processo anterior, escolher 20G para o disco 
 
-	PASSWORD
+```
+ 	PASSWORD
 	SSH_KEY
 	DISK_SIZE
+``` 
 
-* criar um servidor
+* criar um servidor `demo01`
 
 ```
 ./new-vm.sh -n demo01 -m 1024 -c 2 -i 192.168.122.12
 ```
 
-* Verificando, entrando na console
+* Verificar entrando na console
 
 ```
 virsh console demo01
 ``` 
 
+Exemplo:
 ```
 ✔ 14:31:07 [lat3480i7] kvm-provision [master ✚1] $ virsh console demo01
 Connected to domain demo01
@@ -95,7 +91,7 @@ Password:
 [centos@demo01 ~]$
 ``` 
 
-Para sair `CTRL + ]`
+Para sair digitar: `CTRL + ]`
 
 
 * Testar o acesso ssh 
@@ -116,7 +112,7 @@ cat /etc/redhat-release
 reboot
 ```
 
-* Verificar as maquinas virtuais criadas, executar na Hospedeira
+* Verificar as VM's criadas, executar na Hospedeira
 
 ```
 virt-manager
