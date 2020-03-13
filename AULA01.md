@@ -3,6 +3,7 @@
 ```
 sudo su -
 echo "targettrust ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
+exit
 ```
 
 ## GIT BASH PROMPT
