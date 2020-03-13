@@ -1,3 +1,10 @@
+## SUDO
+
+```
+sudo su -
+echo "target ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
+```
+
 ## GIT BASH PROMPT
 
 Baixar o repo
@@ -68,7 +75,7 @@ sudo networkctl status -a
 sudo reboot
 ```
 
-> A minha NIC é enp2s0, em outros casos pode ser eth0
+> A minha NIC é `enp2s0`, na sua pode ter outro nome como `eth0`
 
 ## DOCKER
 
@@ -92,7 +99,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo docker run hello-world
 ```
 
-Setup your username to run docker without sudo
+Configurar o usuario docker
 
 ```shell
 $ sudo usermod -a -G docker $(id -nu)
