@@ -1,6 +1,21 @@
+## GIT BASH PROMPT
+
+Baixar o repo
+```
+cd ~
+git clone https://github.com/jenciso/bash-git-prompt.git .bash-git-prompt --depth=1
+```
+Adicionar as linhas em `~/.bashrc`
+```
+## Bash-git
+GIT_PROMPT_ONLY_IN_REPO=0
+GIT_PROMPT_THEME=Single_line_Minimalist
+source ~/.bash-git-prompt/gitprompt.sh
+```
+
 ## KVM
 
-Verificar
+Verificar se temos suporte para seu uso
 
 ```
 egrep -c '(vmx|svm)' /proc/cpuinfo
@@ -8,14 +23,14 @@ sudo apt install cpu-checker
 sudo kvm-ok
 ``` 
 
-Instalar
+Instalar os seguintes pacotes
 
 ```
 sudo apt update
 sudo apt install qemu qemu-kvm libvirt-bin  bridge-utils  virt-manager
 ``` 
 
-Start & enable libvirtd service
+Inicializar o libvirtd service
 
 ```
 sudo service libvirtd start
@@ -23,7 +38,7 @@ sudo update-rc.d libvirtd enable
 service libvirtd status
 ```
 
-Configurar bridge
+Configurar modo bridge
 
 ```
 sudo su - 
@@ -52,11 +67,8 @@ sudo netplan apply
 sudo networkctl status -a
 sudo reboot
 ```
+
 > A minha NIC é enp2s0, em outros casos pode ser eth0
-
-References:
-
-https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/
 
 ## DOCKER
 
@@ -96,7 +108,9 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
-## REFERENCES
+## Referências
 
-
+* https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/
+* https://docs.docker.com/install/
+* https://docs.docker.com/compose/install/
  
