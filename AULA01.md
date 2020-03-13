@@ -2,7 +2,7 @@
 
 ```
 sudo su -
-echo "target ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
+echo "targettrust ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
 ```
 
 ## GIT BASH PROMPT
